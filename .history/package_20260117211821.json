@@ -1,0 +1,30 @@
+{
+  "name": "gadgethub",
+  "version": "1.0.0",
+  "description": "A smart gadget discovery platform with Firebase authentication and MongoDB backend",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "server": "node server/index.js"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "next": "^14.0.0",
+    "firebase": "^10.7.0",
+    "axios": "^1.6.0",
+    "js-cookie": "^3.0.5",
+    "react-hot-toast": "^2.4.1",
+    "next-themes": "^0.2.1"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.0",
+    "postcss": "^8.4.31",
+    "autoprefixer": "^10.4.16",
+    "typescript": "^5.3.3",
+    "@types/react": "^18.2.37",
+    "@types/node": "^20.8.10"
+  }
+}
