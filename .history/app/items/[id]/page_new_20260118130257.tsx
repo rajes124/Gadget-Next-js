@@ -86,7 +86,7 @@ export default function ItemDetailsPage() {
   const fetchItem = async () => {
     try {
       // Try to fetch from backend first
-      const response = await fetch(`https://gadget-backend-server.onrender.com/api/items/${id}`);
+      const response = await fetch(`http://localhost:5000/api/items/${id}`);
       if (response.ok) {
         const data = await response.json();
         setItem({

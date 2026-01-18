@@ -85,27 +85,37 @@ export default function ItemDetailsPage() {
 
   const fetchItem = async () => {
     try {
-      // Try to fetch from backend first
-      const response = await fetch(`https://gadget-backend-server.onrender.com/api/items/${id}`);
+      // Backend থেকে চেষ্টা করো
+      const response = await fetch(`http://localhost:5000/api/items/${id}`);
+      
       if (response.ok) {
         const data = await response.json();
         setItem({
           ...data,
           id: data._id || data.id,
-          image: data.imageUrl || DEMO_ITEMS[id]?.image || '',
+          image: data.imageUrl || '',
+          // backend-এ না থাকলে default দাও যাতে UI break না করে
+          fullDescription: data.fullDescription || data.description || 'No detailed description available.',
+          specs: data.specs || ['Key features will be added soon.'],
+          category: data.category || 'Uncategorized',
         });
       } else {
-        // Fall back to demo items
+        // backend-এ না পেলে → demo চেক (শুধু short id-এর জন্য)
         const demoItem = DEMO_ITEMS[id];
         if (demoItem) {
           setItem(demoItem);
+        } else {
+          setItem(null);
         }
       }
     } catch (error) {
-      console.warn('Could not fetch item from backend, using demo:', error);
+      console.warn('Could not fetch item from backend, checking demo:', error);
+      // error হলে demo চেক
       const demoItem = DEMO_ITEMS[id];
       if (demoItem) {
         setItem(demoItem);
+      } else {
+        setItem(null);
       }
     } finally {
       setLoading(false);
