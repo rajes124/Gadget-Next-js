@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState,  } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { signIn, signInWithGoogle } from '@/lib/auth';
@@ -29,7 +29,7 @@ export default function LoginPage() {
     try {
       await signIn(email, password);
       toast.success('Login successful!');
-      router.push('/');  // ← এখানে home page-এ redirect করা হয়েছে
+      router.push('/items');
     } catch (error: any) {
       const errorMessage = error.code === 'auth/user-not-found' 
         ? 'User not found. Please sign up first.'
@@ -47,7 +47,7 @@ export default function LoginPage() {
     try {
       await signInWithGoogle();
       toast.success('Login successful!');
-      router.push('/');  // ← এখানেও home page-এ redirect করা হয়েছে
+      router.push('/items');
     } catch (error: any) {
       const errorMessage = error.code === 'auth/popup-closed-by-user'
         ? 'Google sign-in cancelled'

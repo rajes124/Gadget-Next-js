@@ -3,11 +3,11 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Smartphone, ShoppingCart } from 'lucide-react';
+import { Smartphone,  ShoppingCart } from 'lucide-react';
 
 export default function FeaturedSection() {
   const [items, setItems] = useState<any[]>([]);
-  // const [loading, setLoading] = useState(true);  // এটা delete করা হয়েছে
+ // const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchFeaturedItems = async () => {
@@ -21,7 +21,7 @@ export default function FeaturedSection() {
       } catch (error) {
         console.log('Using default featured items');
       } finally {
-        // setLoading(false);  ← এই লাইনটা delete করা হয়েছে
+        setLoading(false);
       }
     };
 

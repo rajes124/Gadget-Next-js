@@ -30,10 +30,10 @@ export default function ProfilePage() {
     const currentUser = getCurrentUser();
     if (!currentUser) {
       router.push('/login');
-      return;  // ← এখানে seteturn; ছিল, এখন return; করা হয়েছে
+      setDisplayName(currentUser.displayName || currentUser.email?.split('@')[0] || 'User');
+      return;
     }
     setUser(currentUser);
-    setDisplayName(currentUser.displayName || currentUser.email?.split('@')[0] || 'User');
     setLoading(false);
   }, [router]);
 
@@ -44,8 +44,7 @@ export default function ProfilePage() {
       router.push('/');
     } catch (error) {
       toast.error('Failed to logout');
-    }
-  };
+    
 
   const handleUpdateProfile = async () => {
     if (!displayName.trim()) {
@@ -87,6 +86,7 @@ export default function ProfilePage() {
     } finally {
       setSaving(false);
     }
+  };}
   };
 
   if (loading) {
